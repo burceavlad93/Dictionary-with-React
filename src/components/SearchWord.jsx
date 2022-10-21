@@ -6,13 +6,13 @@ export default function SearchWord(props) {
         let input = document.getElementById('input').value.trim();
         let word = input.toLowerCase();
 
-        if (props.wordList.includes(word)) {
-            console.log(props.wordList.includes(word));
-            props.sendSearchResultToParent(true, word);
-        } else {
-            console.log(props.wordList.includes(word));
-            props.sendSearchResultToParent(false, word)
+        for (let i = 0; i < props.wordList.length; ++i) {
+            if (props.wordList[i] === word) {
+                props.sendSearchResultToParent(true, word);
+                return;
+            }
         }
+        props.sendSearchResultToParent(false, word)
     }
 
     return (
